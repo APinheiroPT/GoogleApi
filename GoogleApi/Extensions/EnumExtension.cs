@@ -19,7 +19,7 @@ namespace GoogleApi.Extensions
         /// <param name="enum"></param>
         /// <returns></returns>
         public static string ToEnumString<T>(this T @enum)
-            where T : struct, IConvertible
+            where T : struct // TODO:, IConvertible
         {
             var enumType = typeof(T);
             var name = Enum.GetName(enumType, @enum); 
@@ -36,13 +36,13 @@ namespace GoogleApi.Extensions
         /// <param name="delimeter"></param>
         /// <returns></returns>
         public static string ToEnumString<T>(this T @enum, char delimeter)
-            where T : struct, IConvertible
+            where T : struct // TODO:, IConvertible
         {
             if (@enum.GetType().GetTypeInfo().GetCustomAttributes(typeof(FlagsAttribute), true).FirstOrDefault() == null)
                 return Convert.ToString(@enum, CultureInfo.InvariantCulture).ToLower();
 
             var stringBuilder = new StringBuilder();
-            var binaryCharArray = Convert.ToString(@enum, CultureInfo.InvariantCulture).Reverse().ToArray();
+            var binaryCharArray = Convert.ToString(@enum, CultureInfo.InvariantCulture)/*.Reverse().ToArray()*/;
 
             for (var i = 0; i < binaryCharArray.Length; i++)
             {
